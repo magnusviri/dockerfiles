@@ -1,0 +1,12 @@
+version: "3"
+services:
+  app:
+    image: "freeorion:0.4.10.1"
+    build:
+      context: ./
+    ports:
+      - "12346:12346"
+    environment:
+      TZ: America/Denver
+    volumes:
+      - .:/data

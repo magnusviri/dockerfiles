@@ -1,0 +1,34 @@
+version: "3"
+services:
+  mysql:
+    image: "mysql:5.7"
+    networks:
+      - jamfnet
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_USER
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+  app:
+    image: "jamfpro:${JAMF_PRO_VERSION}"
+    build:
+      context: ./
+      args:
+        - JAMF_IMAGE_VERSION
+        - JAMF_PRO_VERSION
+    networks:
+      - jamfnet
+    ports:
+      - "80:8080"
+    environment:
+      DATABASE_USERNAME: "${MYSQL_USER}"
+      DATABASE_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      DATABASE_HOST: "mysql"
+    depends_on:
+      - mysql
+networks:
+  jamfnet:
