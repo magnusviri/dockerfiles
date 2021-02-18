@@ -1,5 +1,26 @@
-# freeorion-server-docker
+# FreeOrion docker-compose
 
-Docker Compose and Dockerfile to build and run a FreeOrion headless game server.
+Docker Compose and Dockerfile to get [FreeOrion](https://freeorion.org/) running in a container.
 
-This does not work yet.
+Download and install docker-compose and [docker](https://www.docker.com/get-started).
+
+## Clone Repository
+
+```
+git clone github.com/magnusviri/dockerfiles.git
+cd dockerfiles/freeorion
+```
+
+Edit the docker-compose.yml file and change TZ to your timezone.
+
+## Start
+
+```
+docker-compose up -d
+```
+
+Save files will be located in "saves"
+
+## License
+
+MIT License
