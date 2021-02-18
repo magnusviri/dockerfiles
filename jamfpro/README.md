@@ -1,5 +1,4 @@
 # Jamf Pro docker-compose
-
 Docker Compose file to get Jamf Pro running with minimal effort.
 
 FYI: Jamf Pro is not free and is not included in this repository. You must purchase it before this will work. Instructions for downloading it are below.
@@ -92,6 +91,8 @@ Things I might do.
 Please let me know if there's anything I'm missing.
 
 ## Credit
+
+None of this would be possible without the awesome image provided by [Jamf](https://github.com/jamf/jamfpro).
 
 I used [Bryson Tyrrell's file](https://gist.github.com/brysontyrrell/95c9492f02a691b3f976830557f6d4ed) as a starting point for this project.
 
