@@ -1,7 +1,7 @@
 version: "3"
 services:
   mysql:
-    image: "mysql:5.7"
+    image: "mariadb:10.6.0"
     networks:
       - jamfnet
     ports:
@@ -12,7 +12,7 @@ services:
       - MYSQL_ROOT_PASSWORD
       - MYSQL_USER
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - ./${JAMF_PRO_VERSION}/mysql-data:/var/lib/mysql
   app:
     image: "jamfpro:${JAMF_PRO_VERSION}"
     build:
