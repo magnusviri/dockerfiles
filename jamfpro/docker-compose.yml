@@ -14,12 +14,7 @@ services:
     volumes:
       - ./${JAMF_PRO_VERSION}/mysql-data:/var/lib/mysql
   app:
-    image: "jamfpro:${JAMF_PRO_VERSION}"
-    build:
-      context: ./
-      args:
-        - JAMF_IMAGE_VERSION
-        - JAMF_PRO_VERSION
+    image: "jamfdevops/jamfpro:${JAMF_IMAGE_VERSION}"
     networks:
       - jamfnet
     ports:
@@ -31,5 +26,7 @@ services:
     depends_on:
       - mysql
     restart: always
+    volumes:
+      - ./${JAMF_PRO_VERSION}/ROOT.war:/data/ROOT.war
 networks:
   jamfnet:
