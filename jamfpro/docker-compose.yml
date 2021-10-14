@@ -13,8 +13,8 @@ services:
       - MYSQL_USER
     volumes:
       - ./${JAMF_PRO_VERSION}/mysql-data:/var/lib/mysql
-  app:
-    image: "jamfdevops/jamfpro:${JAMF_IMAGE_VERSION}"
+  jamfpro:
+    image: "jamf/jamfpro:${JAMF_IMAGE_VERSION}"
     networks:
       - jamfnet
     ports:
