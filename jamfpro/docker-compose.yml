@@ -1,7 +1,8 @@
 version: "3"
 services:
   mysql:
-    image: "mariadb:10.6.0"
+    image: "mysql:latest"
+    command: --default-authentication-plugin=mysql_native_password
     networks:
       - jamfnet
     ports:
@@ -11,6 +12,7 @@ services:
       - MYSQL_PASSWORD
       - MYSQL_ROOT_PASSWORD
       - MYSQL_USER
+    restart: unless-stopped
     volumes:
       - ./${JAMF_PRO_VERSION}/mysql-data:/var/lib/mysql
   jamfpro:
@@ -25,8 +27,9 @@ services:
       DATABASE_HOST: "mysql"
     depends_on:
       - mysql
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./${JAMF_PRO_VERSION}/ROOT.war:/data/ROOT.war
 networks:
   jamfnet:
+    driver: bridge

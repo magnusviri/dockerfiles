@@ -11,7 +11,7 @@
 
 Start apache and serve the current directory.
 
-	docker run --rm -it -p8080:80 -v $(pwd):/usr/lcaol/apache2/htdocs httpd
+	docker run --rm -it -p8080:80 -v $(pwd):/usr/local/apache2/htdocs httpd
 
 ### asciicast2gif
 

@@ -1,10 +1,12 @@
 # Jamf Pro docker-compose
 
-Docker Compose file to get [Jamf Pro](https://www.jamf.com/) running in a container.
+Docker Compose file to get [Jamf Pro](https://www.jamf.com/) running in a container. I have been using this to easily test [jctl](https://github.com/univ-of-utah-marriott-library-apple/jctl) against many different versions of Jamf Pro, which I run locally on my M1 laptop. I plan on eventually running my production server this way.
 
-FYI: Jamf Pro is not free and is not included in this repository. You must purchase it before this will work. Instructions for downloading it are below.
+FYI: Jamf Pro is not free and is not included in this repository. You must purchase it before this will work. And even if you purchase Jamf, you will want to request a development license. Request the development license from your [Jamf Account Team](https://account.jamf.com/account-team) (login required).
 
-2021-06-21 update: This docker-compose file no longer creates a docker image that includes Jamf Pro. Instead it mounts the Jamf Pro ROOT.war file in a generic image. This saves a lot of disk space and time.
+Instructions for downloading Jamf Pro are below.
+
+This docker-compose file mounts the Jamf Pro ROOT.war file. This saves a lot of disk space and time. It also mounts the mysql data folder, so it can saved even if the container is thrown away.
 
 ## Slack
 
@@ -12,7 +14,7 @@ If you have questions or want to discuss this please do it on the jamf-docker ch
 
 ## Install
 
-Download and install docker-compose and [docker](https://www.docker.com/get-started).
+Download and install [Docker](https://www.docker.com/get-started) (docker compose is now part of docker).
 
 ### Clone Repository and Create Environment File
 
@@ -24,7 +26,7 @@ cp .env_example .env
 
 ### Download Jamf Pro
 
-Login to [https://www.jamf.com/jamf-nation/my/assets](https://www.jamf.com/jamf-nation/my/assets), find the version of Jamf Pro you want to download, select "Manual" then click "Download For Manual". Save your "Activation Code" since you will need to enter it once the server starts up.
+Login to [https://account.jamf.com/products/jamf-pro](https://account.jamf.com/products/jamf-pro), find the version of Jamf Pro you want to download, select "Manual" then click "Download For Manual". Save your "Activation Code" since you will need to enter it once the server starts up.
 
 Find the jamf-pro-installation-x.x.x.zip file you downloaded, and unzip it. Take the ROOT.war file that was unzipped and put it in the directory that represents the version. That is, if it's Jamf Pro 10.26.1, put it in a folder named 10.26.1 inside of this project. Like this.
 
@@ -46,34 +48,44 @@ total 557312
 
 Edit the .env so that JAMF_PRO_VERSION is the correct version.
 
-	JAMF_PRO_VERSION=10.26.1
+	JAMF_PRO_VERSION=10.36.1
 
-Also, check the [JamfDevops Docker Hub page](https://hub.docker.com/r/jamfdevops/jamfpro/tags?page=1&ordering=last_updated) to see if they've updated their jamfpro tag. The latest version as of 2021-06-21 is 0.0.13. If they've updated it since then and you want to update your image, change this value to reflect the new tag.
+Also, check the [Jamf Docker Hub page](https://hub.docker.com/r/jamf/jamfpro/tags) to see if they've updated their jamfpro tag. The latest version as of 2022-03-10 is 0.0.16. If they've updated it since then and you want to update your image, change this value to reflect the new tag.
 
-	JAMF_IMAGE_VERSION=0.0.13.
+	JAMF_IMAGE_VERSION=0.0.16.
 
-If you want to change the MariaDB values, do so as well.
+If you want to change the MySQL values, do so as well.
 
 ### Change the Port
 
 This will open up port 80 on your computer. If you want it on a different port, open the docker-compose.yml file and change the "80" in the following lines to something else.
 
-	ports:
-	  - "80:8080"
+```
+ports:
+  - "80:8080"
+```
 
 ### Start
 
 ```
-docker-compose up -d
+docker compose up -d
+```
+
+If you are using an Arm processor, then specify docker-compose-arm.yml.
+
+```
+docker compose -f docker-compose-arm.yml up -d
 ```
 
 Open [http://localhost/](http://localhost/) and wait for it to startup. It can take several minutes. Follow the setup procedures (here's the [documentation](https://www.jamf.com/resources/product-documentation/) in case you need help). Accept the license agreement, enter your activation code, and create an account. For the Jamf Pro URL use "http://localhost" (for local testing only) or whatever your IP is.
 
 ## Roadmap
 
-I am not using this in production yet because I see it crash a lot. I plan on eventually using this to deploy my production server. As such, I plan on adding the following features.
+I am not using this in production yet. I plan on eventually using this to deploy my production server. As such, I plan on adding the following features.
 
 - SSL support w/ signed certificates
+- Custom server.xml
+- jamf-cli support
 
 Things I might do.
 
