@@ -100,6 +100,8 @@ This depends completely on the image provided by [Jamf](https://github.com/jamf/
 
 I used [Bryson Tyrrell's file](https://gist.github.com/brysontyrrell/95c9492f02a691b3f976830557f6d4ed) as a starting point for this project.
 
+I am also using [wait-for-it.sh](https://github.com/vishnubob/wait-for-it/blob/81b1373f17855a4dc21156cfe1694c31d7d1792e/wait-for-it.sh) to pause Jamf until MySQL starts.
+
 ## License
 
 MIT License

@@ -1,7 +1,7 @@
 version: "3"
 services:
   mysql:
-    image: "mysql/mysql-server:latest"
+    image: "mysql/mysql-server:${MYSQL_VERSION}"
     command: --default-authentication-plugin=mysql_native_password
     networks:
       - jamfnet
@@ -14,9 +14,11 @@ services:
       - MYSQL_USER
     restart: unless-stopped
     volumes:
-      - ./${JAMF_PRO_VERSION}/mysql-data:/var/lib/mysql
+      - ./${JAMF_PRO_VERSION}/mysql-data-${MYSQL_VERSION}:/var/lib/mysql
   jamfpro:
     image: "jamf/jamfpro:${JAMF_IMAGE_VERSION}"
+    depends_on:
+      - mysql
     networks:
       - jamfnet
     ports:
@@ -30,6 +32,13 @@ services:
     restart: unless-stopped
     volumes:
       - ./${JAMF_PRO_VERSION}/ROOT.war:/data/ROOT.war
+      - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh
+    command:
+      - /usr/local/bin/wait-for-it.sh
+      - --timeout=0
+      - mysql:3306
+      - --
+      - /startup.sh
 networks:
   jamfnet:
     driver: bridge
