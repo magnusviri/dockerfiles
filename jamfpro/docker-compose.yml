@@ -17,8 +17,6 @@ services:
       - ./${JAMF_PRO_VERSION}/mysql-data-${MYSQL_VERSION}:/var/lib/mysql
   jamfpro:
     image: "jamf/jamfpro:${JAMF_IMAGE_VERSION}"
-    depends_on:
-      - mysql
     networks:
       - jamfnet
     ports:
