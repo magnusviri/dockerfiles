@@ -5,6 +5,16 @@
 - [jamfpro](./jamfpro) My attempt at a [Jamf Pro](https://www.jamf.com/) server.
 - [freeorion](./freeorion) My attempt at a [FreeOrion](https://freeorion.org/) hostless server.
 
+You are probably here for the Jamf Pro compose file. I had this as a separate repo, but I thought I was going to make so many Docker images that I should combine all of my Docker Compose files into one repo. And then I didn't make a whole bunch. So it's just these 2. I'm just going to leave them together though simply because I don't want to go through the work to split them up.
+
+## Jamf Pro
+
+For more information, see my [Jamf Pro Readme](https://github.com/magnusviri/dockerfiles/tree/main/jamfpro).
+
+## FreeOrion
+
+For more information, see my [FreeOrion](https://github.com/magnusviri/dockerfiles/tree/main/freeorion).
+
 ## Really useful one-liners
 
 ### Apache

@@ -2,6 +2,10 @@
 
 Docker Compose and Dockerfile to get [FreeOrion](https://freeorion.org/) running in a container.
 
+I have not used this in a long time. I don't know if it still works.
+
+## Install
+
 Download and install docker-compose and [docker](https://www.docker.com/get-started).
 
 ## Clone Repository
