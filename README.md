@@ -13,7 +13,7 @@ For more information, see my [Jamf Pro Readme](https://github.com/magnusviri/doc
 
 ## FreeOrion
 
-For more information, see my [FreeOrion](https://github.com/magnusviri/dockerfiles/tree/main/freeorion).
+For more information, see my [FreeOrion Readme](https://github.com/magnusviri/dockerfiles/tree/main/freeorion).
 
 ## Really useful one-liners
 
