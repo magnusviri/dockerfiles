@@ -1,4 +1,3 @@
 .DS_Store
 .env
-mysql-data/*
-ROOT.war
+data/*

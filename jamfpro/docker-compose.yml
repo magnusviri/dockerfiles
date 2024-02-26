@@ -14,13 +14,13 @@ services:
       - MYSQL_USER
     restart: unless-stopped
     volumes:
-      - ./${JAMF_PRO_VERSION}/mysql-data-${MYSQL_VERSION}:/var/lib/mysql
+      - ./data/${JAMF_PRO_VERSION}/mysql-data-${MYSQL_VERSION}:/var/lib/mysql
   jamfpro:
     image: "jamf/jamfpro:${JAMF_IMAGE_VERSION}"
     networks:
       - jamfnet
     ports:
-      - "80:8080"
+      - "${JAMF_PRO_PORT}:8080"
     environment:
       DATABASE_USERNAME: "${MYSQL_USER}"
       DATABASE_PASSWORD: "${MYSQL_PASSWORD}"
@@ -29,7 +29,7 @@ services:
       - mysql
     restart: unless-stopped
     volumes:
-      - ./${JAMF_PRO_VERSION}/ROOT.war:/data/ROOT.war
+      - ./data/${JAMF_PRO_VERSION}/ROOT.war:/data/ROOT.war
       - ./wait-for-it.sh:/usr/local/bin/wait-for-it.sh
     command:
       - /usr/local/bin/wait-for-it.sh
