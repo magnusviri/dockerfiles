@@ -1,15 +1,16 @@
 # This repository contains my Dockerfiles
 
+I moved the [Jamf Pro docker to a separate repo](https://github.com/magnusviri/docker-jamfpro).
+
 ## Directory structure
 
-- [jamfpro](./jamfpro) My attempt at a [Jamf Pro](https://www.jamf.com/) server.
 - [freeorion](./freeorion) My attempt at a [FreeOrion](https://freeorion.org/) hostless server.
 
-You are probably here for the Jamf Pro compose file. I had this as a separate repo, but I thought I was going to make so many Docker images that I should combine all of my Docker Compose files into one repo. And then I didn't make a whole bunch. So it's just these 2. I'm just going to leave them together though simply because I don't want to go through the work to split them up.
+A long time ago I was going to make a whole bunch of Docker containers. But then I didn't. I haven't tried Freeorion in a long time. Oh well. I'm just going to leave it here.
 
 ## Jamf Pro
 
-For more information, see my [Jamf Pro Readme](https://github.com/magnusviri/dockerfiles/tree/main/jamfpro).
+I moved the [Jamf Pro docker to a separate repo](https://github.com/magnusviri/docker-jamfpro).
 
 ## FreeOrion
 
